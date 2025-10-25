@@ -1,6 +1,6 @@
 {
 	"main": "dist/_worker.js/index.js",
-	"name": "hylo-website",
+	"name": "hylo",
   "compatibility_date": "2025-10-25",
   "compatibility_flags": [
     "nodejs_compat",
