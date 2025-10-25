@@ -6,17 +6,20 @@ import starlightThemeRapide from 'starlight-theme-rapide'
 import cloudflare from '@astrojs/cloudflare';
 
 import tailwindcss from '@tailwindcss/vite';
-import {sidebar} from "./src/content/docs/sidebar.config.ts";
+import {sidebar} from "./src/content/docs/.sidebar.ts";
 import * as fs from "node:fs";
+import {pluginErrorPreview} from "./src/components/error-preview-plugin.ts";
 
 // https://astro.build/config
 export default defineConfig({
     integrations: [
         starlight({
             title: 'Hylo',
+            favicon: './src/assets/hylo-favicon.png',
             logo: {
                 replacesTitle: true,
-                dark: './src/assets/hylo-blue.png',
+                // dark: './src/assets/hylo-blue.png',
+                dark: './src/assets/hylo-green.png',
                 light: './src/assets/hylo-black.png',
             },
             social: [
@@ -30,6 +33,7 @@ export default defineConfig({
             components: {
                 'Header': './src/layouts/Header.astro',
             },
+
             sidebar: sidebar,
             customCss: ['./src/styles/global.css'],
             plugins: [starlightThemeRapide()],
@@ -38,7 +42,10 @@ export default defineConfig({
                     langs: [
                         JSON.parse(fs.readFileSync('./hylo.tmLanguage.json', 'utf-8'))
                     ]
-                }
+                },
+                plugins: [
+                    pluginErrorPreview()
+                ]
             }
         }),
 

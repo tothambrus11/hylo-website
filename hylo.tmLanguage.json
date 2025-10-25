@@ -221,7 +221,7 @@
         },
         {
           "name": "keyword.modifier.hylo",
-          "match": "\\b(public|static)\\b"
+          "match": "\\b(public|private|fileprivate|internal|static)\\b"
         },
         {
           "name": "keyword.convention.hylo",
