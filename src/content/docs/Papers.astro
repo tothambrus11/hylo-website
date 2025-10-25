@@ -1,0 +1,20 @@
+---
+import {getCollection} from 'astro:content';
+import {Card, CardGrid} from '@astrojs/starlight/components';
+
+export const papers = await getCollection('papers');
+
+---
+
+<CardGrid>
+    {papers.map((paper) => (
+            <Card title={paper.data.title} icon="document">
+                <p><strong>Authors:</strong> {paper.data.authors.join(', ')}</p>
+                <p><strong>Venue:</strong> {paper.data.venue}</p>
+                <p><strong>Year:</strong> {paper.data.year}</p>
+                {paper.data.url && (
+                        <p><a href={paper.data.url} target="_blank" rel="noopener noreferrer">Read Paper</a></p>
+                )}
+            </Card>
+    ))}
+</CardGrid>

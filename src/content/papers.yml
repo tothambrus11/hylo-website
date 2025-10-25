@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=../../../.astro/collections/papers.schema.json
+
+cpp_on_sea_2024:
+  title: "Hylo: The Safe Systems and Generic-programming Language Built on Value Semantics"
+  authors:
+    - "Dave Abrahams"
+  venue: "C++ on Sea"
+  year: 2024
+  month: 7
+  url: "https://www.youtube.com/watch?v=5lecIqUhEl4"

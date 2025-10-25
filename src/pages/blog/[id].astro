@@ -19,15 +19,15 @@ const { Content } = await render(post);
 <StarlightPage
         frontmatter={{
             title: post.data.title,
-            description: post.data.description || `Blog post: ${post.data.title}`,
+            description: post.data.description || `Blog post: ${post.data.title}`
         }}
+        hasSidebar={false}
 >
     <div class="sl-markdown-content">
         <header class="not-content">
-            <h1>{post.data.title}</h1>
-            <div class="post-meta">
+            <div class="post-meta relative -translate-y-4 italic">
                 <time datetime={post.data.date.toISOString()}>
-                    {post.data.date}
+                    ~ {formatDate(post.data.date, "MMMM d, yyyy")}
                 </time>
                 {post.data.author && <span>by {post.data.author}</span>}
             </div>
@@ -36,7 +36,7 @@ const { Content } = await render(post);
         <Content />
 
         <nav class="post-nav">
-            <a href="/blog">← Back to Blog</a>
+            <a href="/blog">← Back to All Articles</a>
         </nav>
     </div>
 </StarlightPage>

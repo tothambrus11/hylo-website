@@ -1,7 +1,7 @@
 ---
 title: Hylo
 description: All in on Value Semantics and Generic Programming
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+template: splash
 hero:
   tagline: All in on Value Semantics and Generic Programming
   image:
@@ -22,7 +22,8 @@ import {discussionsLink, slackLink} from "../../links.js";
 
 import Banner2 from '../../components/Banner2.astro';
 import Button from '../../components/CalloutButton.astro';
-
+import Papers from './Papers.astro';
+import Factorial from '../../components/Factorial.astro';
 
 <Banner2
     title="Join the Hylo Community"
@@ -38,6 +39,8 @@ import Button from '../../components/CalloutButton.astro';
     </Button>
 </Banner2>
 
+
+<Factorial/>
 
 
 
@@ -64,6 +67,8 @@ import Button from '../../components/CalloutButton.astro';
     </Card>
 </CardGrid>
 
+## Papers
+<Papers/>
 
 # Examples
 
