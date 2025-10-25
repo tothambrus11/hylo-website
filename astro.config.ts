@@ -15,7 +15,7 @@ export default defineConfig({
     integrations: [
         starlight({
             title: 'Hylo',
-            favicon: './src/assets/hylo-favicon.png',
+            favicon: 'hylo-favicon.png',
             logo: {
                 replacesTitle: true,
                 dark: './src/assets/hylo-green-smaller.png',
