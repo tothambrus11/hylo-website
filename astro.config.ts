@@ -39,7 +39,8 @@ export default defineConfig({
             expressiveCode: {
                 shiki: {
                     langs: [
-                        JSON.parse(fs.readFileSync('./hylo.tmLanguage.json', 'utf-8'))
+                        JSON.parse(fs.readFileSync('./src/assets/syntax/hylo.tmLanguage.json', 'utf-8')),
+                        JSON.parse(fs.readFileSync('./src/assets/syntax/ebnf.tmLanguage.json', 'utf-8')),
                     ]
                 },
                 plugins: [

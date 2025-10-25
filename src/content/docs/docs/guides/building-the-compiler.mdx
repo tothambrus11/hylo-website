@@ -1,0 +1,26 @@
+---
+title: Building the Compiler
+description: Get started with the Hylo compiler development
+
+---
+
+Introduce the compiler.
+
+
+Good luck :)
+
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+<Tabs syncKey={"build-system"}>
+  <TabItem label="SPM">
+      ```shell frame=none
+      swift build
+      ```
+  </TabItem>
+  <TabItem label="CMake">
+      ```shell frame=none
+      cmake --build .build --config Debug
+      ```
+  </TabItem>
+</Tabs>
