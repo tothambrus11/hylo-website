@@ -1,0 +1,33 @@
+---
+title: 'Optionals in Hylo'
+description: 'Understanding how optional types work in the Hylo programming language'
+date: 2024-10-20
+author: 'Hylo Team'
+tags: ['optionals', 'types', 'tutorial']
+---
+
+# Optionals in Hylo
+
+Optionals are a fundamental feature in Hylo that help you handle values that might be absent safely and explicitly. This article explores how optionals work and why they're important for writing robust code.
+
+## What are Optionals?
+
+An optional type represents a value that might be present or absent. Instead of using null pointers or similar constructs that can lead to runtime errors, Hylo uses optionals to make the possibility of absence explicit in the type system.
+
+## Basic Usage
+
+```hylo
+let maybeNumber: Int? = some(42)
+let nothing: Int? = none
+```
+
+## Unwrapping Optionals
+```
+if let number = maybeNumber {
+    print("The number is \(number)")
+} else {
+    print("No number available")
+}
+```
+
+This approach ensures you handle both the presence and absence of values explicitly, preventing runtime errors and making your code more predictable.

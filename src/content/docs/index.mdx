@@ -8,7 +8,7 @@ hero:
     file: ../../assets/houston.webp
   actions:
     - text: Read Our Vision
-      link: /guides/example/
+      link: /docs/guides/example/
       icon: right-arrow
     - text: Read the Starlight docs
       link: https://starlight.astro.build
@@ -34,9 +34,44 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 		Add Markdown or MDX files to `src/content/docs` to create new pages.
 	</Card>
 	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
+		Edit your `sidebar` and other config in `astro.config.ts`.
 	</Card>
 	<Card title="Read the docs" icon="open-book">
 		Learn more in [the Starlight Docs](https://starlight.astro.build/).
 	</Card>
 </CardGrid>
+
+
+# Examples
+
+## Concurrent Greeting
+```hylo
+
+fun do_greet() -> Int {
+  print("Hello, concurrent world!")
+  return 17
+}
+
+fun prime_number() -> Int {
+  13
+}
+
+fun concurrent_greeting() -> Int {
+  var future = spawn_(fun() { do_greet() })
+  let x = prime_number()
+  print("Main threads says: hello!")
+  print("# before await")
+  let y = future.await() // switching threads
+  print("# after await")
+  return x + y
+}
+
+public fun main() {
+  print("Starting...")
+  print(concurrent_greeting())
+  print("Finishing...")
+}
+
+// Compile this with:
+// > hc concurrent_greeting.hylo -l concore2full -l context_core_api -l boost_context -l c++ -L <path-to-concore2full> -L <path-to-boost>
+```

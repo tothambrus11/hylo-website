@@ -5,11 +5,15 @@ import starlightThemeRapide from 'starlight-theme-rapide'
 
 import cloudflare from '@astrojs/cloudflare';
 
+import tailwindcss from '@tailwindcss/vite';
+import {sidebar} from "./src/content/docs/sidebar.config.ts";
+import * as fs from "node:fs";
+
 // https://astro.build/config
 export default defineConfig({
     integrations: [
         starlight({
-            title: 'hylo',
+            title: 'Hylo',
             logo: {
                 replacesTitle: true,
                 dark: './src/assets/hylo-blue.png',
@@ -24,26 +28,25 @@ export default defineConfig({
                 },
             ],
             components: {
-                'Header': './src/components/Header.astro',
+                'Header': './src/layouts/Header.astro',
             },
-            sidebar: [
-                {
-                    label: 'Guides',
-                    items: [
-                        // Each item here is one entry in the navigation menu.
-                        {label: 'Example Guide', slug: 'guides/example'},
-                    ],
-                },
-                {
-                    label: 'Reference',
-                    autogenerate: {directory: 'reference'},
-                },
-            ],
+            sidebar: sidebar,
+            customCss: ['./src/styles/global.css'],
             plugins: [starlightThemeRapide()],
-        })
-        ,
+            expressiveCode: {
+                shiki: {
+                    langs: [
+                        JSON.parse(fs.readFileSync('./hylo.tmLanguage.json', 'utf-8'))
+                    ]
+                }
+            }
+        }),
+
     ],
 
     adapter: cloudflare(),
+    vite: {
+        plugins: [tailwindcss()],
+    },
 })
 ;
