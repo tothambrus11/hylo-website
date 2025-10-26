@@ -4,10 +4,10 @@ title: Basic types
 
 Hylo is statically typed: the type of a binding must always match the type of the object it is bound to. For instance, it is impossible to assign a floating point number to an integer binding:
 
-```hylo
+```hylo error-preview
 public fun main() {
   var length = 1
-  &length = 2.3 // error: expected type `Int`, found `Float64`
+  &length = ~~2.3~~ //! error: expected type `Int`, found `Float64`
 }
 ```
 
@@ -54,11 +54,11 @@ _Note: For the same reasons as `Int` should be preferred for every integer value
 
 Hylo does not support any kind of implicit conversion between numeric types. For example, the following program is illegal:
 
-```hylo
+```hylo error-preview
 public fun main() {
   let n = 3.2
   let m = 8
-  print(n * m) // error: cannot pass value of type 'Int' to parameter 'let Float64'
+  print(~~n * m~~) //! error: cannot pass value of type 'Int' to parameter 'let Float64'
 }
 ```
 

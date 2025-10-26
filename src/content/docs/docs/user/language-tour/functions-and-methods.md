@@ -127,10 +127,10 @@ fun offset_let(_ v: Vector2, by delta: Vector2) -> Vector2 {
 
 `let` parameters are (notionally) passed by value, and are truly immutable. The compiler wouldn't allow us to modify `v` or `delta` inside the body of `offset_let` if we tried:
 
-```hylo
+```hylo error-preview
 fun offset_let(_ v: Vector2, by delta: Vector2) -> Vector2 {
-  &v.x += delta.x // Error: v is immutable
-  &v.y += delta.y
+  ~~&v.x~~ += delta.x  //! error: v is immutable
+  ~~&v.y~~ += delta.y
   return v
 }
 ```
@@ -174,9 +174,9 @@ The only difference between an immutable borrow in Rust and a `let` in Hylo is t
 
 The `let` convention does not transfer ownership of the argument to the callee, meaning, for example, that without first copying it, a `let` parameter can't be returned, or stored anywhere that outlives the call.
 
-```hylo
+```hylo error-preview
 fun duplicate(_ v: Vector2) -> Vector2 {
-  v // error: `v` cannot escape; return `v.copy()` instead.
+  return ~~v~~  //! error: `v` cannot escape; return `v.copy()` instead.
 }
 ```
 
@@ -204,11 +204,11 @@ _Note: You can probably guess now why the `+=` operator's left operand is always
 
 Second, `inout` arguments must be unique: they can only be passed to the function in one parameter position.
 
-```hylo
+```hylo error-preview
 fun main() {
   var v = (x: 3, y: 4) 
-  offset_inout(&v, by: v) // error: overlapping `inout` access to `v`; 
-}                         // pass `v.copy()` as the second argument instead.
+  offset_inout(~~&v~~, by: ~~v~~) //! error: overlapping `inout` access to `v`; 
+}                         //! pass `v.copy()` as the second argument instead.
 ```
 
 The compiler guarantees that the behavior of `target` in the body of `offset_inout` is as though it had been declared to be a local `var`, with a value that is truly independent from everything else in the program: only `offset_inout` can observe or modify `target` during the call. Just as with the immutability of `let` parameters, this independence upholds local reasoning and guarantees freedom from data races.
@@ -281,12 +281,12 @@ fun offset_sink(_ base: sink Vector2, by delta: Vector2) -> Vector2 {
 
 Just as with `inout` parameters, the compiler enforces that arguments to `sink` parameters are unique. Because of the transfer of ownership, though, the argument becomes inaccessible in the caller after the callee is invoked.
 
-```hylo
+```hylo error-preview
 fun main() {
   let v = (x: 1, y: 2)
   print(offset_sink(v, (x: 3, y: 5)))  // prints (x: 4, y: 7)
-  print(v) // <== error: v was consumed in the previous line
-}          // to use v here, pass v.copy() to offset_sink.
+  print(~~v~~) //! error: v was consumed in the previous line;
+}          //! to use v here, pass v.copy() to offset_sink.
 ```
 
 A C++ developer can understand the `sink` convention as similar in intent to _pass by rvalue reference_. In fact it's more like pass-by-value where the caller first invokes `std::move` on the argument, because ownership of the argument is transferred at the moment of the function call.
@@ -339,7 +339,7 @@ fun offset_inout2(_ v: inout Vector2, by delta: Vector2) {
 
 The `set` convention lets a callee initialize an uninitialized value. The compiler will only accept uninitialized objects as arguments to a set parameter.
 
-```hylo
+```hylo error-preview
 fun init_vector(_ target: set Vector2, x: sink Float64, y: sink Float64) {
   target = (x: x, y: y)
 }
@@ -348,7 +348,7 @@ public fun main() {
   var v: Vector2
   init_vector(&v, x: 1.5, y: 2.5)
   print(v)                         // (x: 1.5, y: 2.5)
-  init_vector(&v, x: 3, y: 7).     // error: 'v' is initialized
+  init_vector(~~&v~~, x: 3, y: 7).     //! error: 'v' is already initialized
 }
 ```
 

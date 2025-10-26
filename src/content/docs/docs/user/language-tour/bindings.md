@@ -6,10 +6,10 @@ The object denoted by a mutable binding can be modified, whereas that of an immu
 
 Immutable bindings are declared with `let` and can be initialized with the `=` operator. It is not possible to modify the bound object during the lifetime of the binding.
 
-```hylo
+```hylo error-preview
 public fun main() {
   let gravity = 9.81
-  &gravity = 11.2 // error: cannot assign, `gravity` is a `let` binding
+  ~~&gravity~~ = 11.2 //! error: cannot assign, `gravity` is a `let` binding
 }
 ```
 
