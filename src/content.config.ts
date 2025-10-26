@@ -21,10 +21,12 @@ export const collections = {
         schema: z.object({
             title: z.string(),
             authors: z.array(z.string()),
-            venue: z.string(),
+            publishedAt: z.string(),
             year: z.number(),
             month: z.number().optional(),
             url: z.string().url().optional(),
+            pdf: z.string().url().optional(),
+            abstract: z.string().optional(),
         })
     }),
     talks: defineCollection({
@@ -36,6 +38,19 @@ export const collections = {
             year: z.number(),
             month: z.number().optional(),
             url: z.string().url().optional(),
+            isKeynote: z.boolean().optional(),
+            isLightningTalk: z.boolean().optional(),
+        })
+    }),
+    podcasts: defineCollection({
+        loader: file("src/content/podcasts.yml"),
+        schema: z.object({
+            podcast: z.string(),
+            episode: z.number(),
+            date: z.string(),
+            guest: z.string(),
+            title: z.string(),
+            url: z.string().url(),
         })
     })
 };

@@ -10,8 +10,8 @@ hero:
     - text: Read Our Vision
       link: /docs/guides/example/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
+    - text: Watch our Introduction Talk
+      link: https://youtu.be/5lecIqUhEl4
       icon: external
       variant: minimal
 ---
@@ -23,6 +23,8 @@ import {discussionsLink, slackLink} from "../../links.js";
 import Banner2 from '../../components/Banner2.astro';
 import Button from '../../components/CalloutButton.astro';
 import Papers from './Papers.astro';
+import Talks from './Talks.astro';
+import Podcasts from './Podcasts.astro';
 import Factorial from '../../components/Factorial.astro';
 
 <Banner2
@@ -41,8 +43,6 @@ import Factorial from '../../components/Factorial.astro';
 
 
 <Factorial/>
-
-
 
 ## Achievements
 
@@ -69,6 +69,12 @@ import Factorial from '../../components/Factorial.astro';
 
 ## Papers
 <Papers/>
+
+## Talks
+<Talks/>
+
+## Podcasts
+<Podcasts/>
 
 # Examples
 

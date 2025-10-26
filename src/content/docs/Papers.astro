@@ -1,20 +1,27 @@
 ---
 import {getCollection} from 'astro:content';
-import {Card, CardGrid} from '@astrojs/starlight/components';
+import {Badge} from '@astrojs/starlight/components'
 
-export const papers = await getCollection('papers');
-
+const papers = (await getCollection('papers')).sort((a, b) => {
+    const yearDiff = b.data.year - a.data.year;
+    if (yearDiff !== 0) return yearDiff;
+    const monthA = a.data.month || 0;
+    const monthB = b.data.month || 0;
+    return monthB - monthA;
+});
 ---
 
-<CardGrid>
+<table class="w-full">
+    <tbody class="w-full">
     {papers.map((paper) => (
-            <Card title={paper.data.title} icon="document">
-                <p><strong>Authors:</strong> {paper.data.authors.join(', ')}</p>
-                <p><strong>Venue:</strong> {paper.data.venue}</p>
-                <p><strong>Year:</strong> {paper.data.year}</p>
-                {paper.data.url && (
-                        <p><a href={paper.data.url} target="_blank" rel="noopener noreferrer">Read Paper</a></p>
-                )}
-            </Card>
+            <tr>
+                <td><a href={paper.data.url}>{paper.data.title}</a></td>
+                <td class="whitespace-nowrap">
+                    {paper.data.pdf && <a href={paper.data.pdf}><Badge text="PDF" variant="tip"/></a>}
+                </td>
+                <td>{paper.data.authors.join(', ')}</td>
+                <td class="whitespace-nowrap">{paper.data.year}{paper.data.month && ("-" + String(paper.data.month).padStart(2, '0'))}</td>
+            </tr>
     ))}
-</CardGrid>
+    </tbody>
+</table>

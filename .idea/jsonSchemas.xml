@@ -3,16 +3,32 @@
   <component name="JsonSchemaMappingsProjectConfiguration">
     <state>
       <map>
-        <entry key="papers.schema">
+        <entry key="Papers">
           <value>
             <SchemaInfo>
               <option name="generatedName" value="New Schema" />
-              <option name="name" value="papers.schema" />
+              <option name="name" value="Papers" />
               <option name="relativePathToSchema" value=".astro/collections/papers.schema.json" />
               <option name="patterns">
                 <list>
                   <Item>
                     <option name="path" value="src/content/papers.yml" />
+                  </Item>
+                </list>
+              </option>
+            </SchemaInfo>
+          </value>
+        </entry>
+        <entry key="Talks">
+          <value>
+            <SchemaInfo>
+              <option name="generatedName" value="New Schema" />
+              <option name="name" value="Talks" />
+              <option name="relativePathToSchema" value=".astro/collections/talks.schema.json" />
+              <option name="patterns">
+                <list>
+                  <Item>
+                    <option name="path" value="src/content/talks.yml" />
                   </Item>
                 </list>
               </option>
