@@ -16,7 +16,7 @@ export const userGuideSidebar = [
     },
     {
         label: 'Tooling', items: [
-            {label: 'IDE Extensions', slug: 'docs/user/tooling/ide-extensions'},
+            {label: 'Editor Extensions', slug: 'docs/user/tooling/editors'},
             {label: 'Documentation Compiler', slug: 'docs/user/tooling/hylodoc'},
         ]
     }
