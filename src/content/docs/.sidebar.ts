@@ -5,11 +5,8 @@ import {userGuideSidebar} from "./docs/user/.sidebar.ts";
 
 type Sidebar = StarlightUserConfig['sidebar'];
 
-
-export const sidebar: Sidebar = [
-    userGuideSidebar,
+export const sidebar = [
+    ...userGuideSidebar,
     contributingGuideSidebar,
     referencesSidebar,
-]
-
-
+] as const satisfies Sidebar;

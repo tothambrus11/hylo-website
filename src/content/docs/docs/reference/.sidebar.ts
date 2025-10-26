@@ -9,7 +9,8 @@ export const referencesSidebar: ArrayElement<Sidebar> = {
     label: 'Reference',
     // autogenerate: {directory: 'docs/reference'},
     items: [
-        { label: 'IR', link: 'https://docs.hylo-lang.org/hylo-ir', ...outdatedBadge },
+        // { label: 'IR', link: 'https://docs.hylo-lang.org/hylo-ir', ...outdatedBadge },
+        {label: 'IR', slug: 'docs/reference/ir', ...outdatedBadge},
         { label: 'Language Specification', slug: 'docs/reference/specification', ...outdatedBadge },
         { label: 'Standard Library', link: 'https://hylodoc.web.app/Sources/index.html'}
     ]
