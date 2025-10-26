@@ -18,6 +18,7 @@ export const userGuideSidebar = [
         label: 'Tooling', items: [
             {label: 'Editor Extensions', slug: 'docs/user/tooling/editors'},
             {label: 'Documentation Compiler', slug: 'docs/user/tooling/hylodoc'},
+            {label: 'Debugger', slug: 'docs/user/tooling/debugger'},
         ]
     }
 ] as const satisfies Sidebar;
