@@ -9,6 +9,7 @@ import tailwindcss from '@tailwindcss/vite';
 import {sidebar} from "./src/content/docs/.sidebar.ts";
 import * as fs from "node:fs";
 import {pluginErrorPreview} from "./src/components/error-preview-plugin.ts";
+import {compilerRepoLink, slackLink} from "./src/links.ts";
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,11 +23,11 @@ export default defineConfig({
                 light: './src/assets/hylo-black.png',
             },
             social: [
-                {icon: 'github', label: 'GitHub', href: 'https://github.com/hylo-lang/hylo'},
+                {icon: 'github', label: 'GitHub', href: compilerRepoLink},
                 {
                     icon: 'slack',
                     label: 'Slack',
-                    href: 'https://join.slack.com/t/val-qs97696/shared_invite/zt-1z3dsblrq-y4qXfEE6wr6uMEJSN9uFyg'
+                    href: slackLink
                 },
             ],
             components: {

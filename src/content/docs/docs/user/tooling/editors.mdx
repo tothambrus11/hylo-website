@@ -12,7 +12,8 @@ import {Aside} from "@astrojs/starlight/components";
 
 <Aside title="Help wanted!">
     The [language server](https://github.com/hylo-lang/hylo-language-server) is work in progress, currently not yet
-    available within these extensions. Contact us on <a href={slackLink}>Slack</a> if you want to join its development!
+    available within these extensions. Contact us on <a href={slackLink}>Slack</a> if you want to join its development
+    or help with integrating it to various editors!
 </Aside>
 
 ## Visual Studio Code Extension
@@ -22,6 +23,10 @@ Search for the extension named "Hylo" in the VSCode marketplace:
 This extension also adds code execution support, so if you want to set that up, check out [its documentation](https://github.com/hylo-lang/vscode-hylo/).
 
 ## Emacs: Hylo mode
-We have a basic fork of Swift mode for Emacs in [this repository](https://github.com/hylo-lang/hylo-mode). We have no
-guarantees whether this works, but after the language server is functional, we are planning to add official support to
-many editors, including Emacs.
+We have an Emacs mode for Hylo in [this repository](https://github.com/hylo-lang/hylo-mode), which provides basic syntax
+highlighting. LSP support is not yet integrated.
+
+## Zed, IntelliJ, and Others...
+You can use the [Hylo's TextMate grammar](https://github.com/hylo-lang/vscode-hylo/blob/main/syntaxes/hylo.tmLanguage.json)
+of Hylo to easily add syntax highlighting support to other editors. If you have created an extension, please let us know
+so that we can promote it here, and possibly move it to the [Hylo GitHub organization](https://github.com/hylo-lang/)!
