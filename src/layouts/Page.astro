@@ -1,9 +1,9 @@
 ---
-// Import the `<StarlightPage>` component first to set up cascade layers.
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
-
+let {frontmatter} = Astro.props;
+let title = frontmatter.title as string;
 ---
 
-<StarlightPage frontmatter={{ title: 'Contribute to Hylo' }} hasSidebar={false} >
-
+<StarlightPage frontmatter={{title: title}} hasSidebar={false}>
+    <slot/>
 </StarlightPage>

@@ -1,16 +1,32 @@
-# Starlight Starter Kit: Basics
+# Hylo Website
 
 [![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
 
+## Getting Started
+Requirements:
+- Recent [NodeJS](https://nodejs.org/en/download).
+- pnpm package manager. You can install it via npm:
+  ```bash
+  npm install -g pnpm
+  ```
+
+Then clone this repo, install dependencies, and start the development server:
+
+```bash
+pnpm install
+pnpm dev
 ```
-pnpm create astro@latest -- --template starlight
-```
+
+Note: hot reloading works well for content and components but not for sidebar changes. If you see something not updating,
+just restart the dev server.
+
+**Further tips:** See the `content/docs/docs/contributing/documentation.mdx` for cool mdx features you can use in your docs!
 
 > 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
 ## 🚀 Project Structure
 
-Inside of your Astro + Starlight project, you'll see the following folders and files:
+Inside your Astro + Starlight project, you'll see the following folders and files:
 
 ```
 .

@@ -7,7 +7,7 @@ export const contributingGuideSidebar: ArrayElement<Sidebar> = {
     label: 'Contributing Guide',
     items: [
         {label: 'Introduction', slug: 'docs/contributing'},
-        {label: 'Picking a Topic', slug: 'docs/contributing/picking-a-topic'},
+        {label: 'How can you help?', slug: 'docs/contributing/open-topics'},
         {label: 'Building the Compiler', slug: 'docs/contributing/building-the-compiler'},
         {label: 'Editing this Documentation', slug: 'docs/contributing/documentation'},
         {label: 'University Collaboration', slug: 'docs/contributing/university-collab'},
@@ -15,3 +15,8 @@ export const contributingGuideSidebar: ArrayElement<Sidebar> = {
         {label: 'Code of Conduct', slug: 'docs/contributing/code-of-conduct'},
     ],
 };
+
+let a = 1 + 3;
+a = a + a * (a * a);
+
+

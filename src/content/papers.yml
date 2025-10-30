@@ -254,3 +254,26 @@ c-interop:
   month: 6
   url: "https://ambrus.dev/posts/hylo-c-interop/"
   pdf: "https://ambrus.dev/_astro/High-Fidelity%20C%20Interoperability%20in%20Hylo.7fUYiq3A.pdf"
+
+debugging-hylo:
+  title: "Debugging Hylo"
+  abstract: |
+    Debugging is a fundamental part of software development, yet adding debugger support to new programming languages
+    remains a complex and underexplored challenge. This report presents the design and implementation of source-level
+    debugging for Hylo, a new systems programming language that emphasises generic programming and mutable value
+    semantics. To achieve this, we extend the Hylo compiler to emit DWARF debug information, enabling seamless 
+    integration with the LLDB debugger.
+ 
+    Our approach is incremental and guided by the behaviour of the Clang C++ compiler, allowing us to support Hylo core
+    language features, such as variables, functions, user-defined types, and generics. We also identify and analyse key
+    limitations, including challenges in representing Hylo’s fine-grained variable lifetimes and projections, enabling 
+    evaluation of complex expressions in LLDB, and supporting Hylo’s dynamic types (i.e., existentials). Beyond Hylo, 
+    this work aims to outline a general, reusable methodology for equipping new programming languages with modern
+    debugging capabilities, improving their usability and adoption.
+  authors:
+    - Tudor-Stefan Magirescu
+  publishedAt: "Delft University of Technology"
+  year: 2025
+  month: 6
+  url: "https://repository.tudelft.nl/record/uuid:6211f244-1c7b-47ca-bf0f-7e6b6123f125"
+  pdf: "https://repository.tudelft.nl/file/File_fbc6ad08-6db5-4468-99b9-ad036ba2b56e"

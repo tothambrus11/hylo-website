@@ -73,15 +73,15 @@ import Factorial from '../../components/Factorial.astro';
     </Card>
 </CardGrid>
 
-## Papers
+## Research Around Hylo
 <Papers/>
 <div className="relative overflow-hidden bg-gradient-to-br from-[#1a202c] to-[#2d3748] rounded-2xl shadow-lg transition-all duration-300">
 
     <div className="not-content relative m-0 z-10 flex flex-col md:flex-row items-center justify-between gap-6 p-8 md:px-10">
         <div className="text-white/80 text-lg">
             <p className="">
-                Are you a student or professor looking for a research collaboration? We have many open research topics,
-                so check out our <a className="text-inherit" href="/docs/contributing/university-collab/">University Collaboration</a> page to learn more!
+                Are you interested in research collaboration — as a student, professor, or independent contributor?
+                Learn about our ongoing and open research topics on our <a className="text-inherit" href="/docs/contributing/university-collab/">University Collaboration</a> page!
             </p>
         </div>
 
@@ -101,16 +101,13 @@ import Factorial from '../../components/Factorial.astro';
 
 ## Concurrent Greeting
 ```hylo
-
-
-fun concurrent_greeting() -> Int {
-  var future = spawn_(fun() { do_greet() })
-  let x = prime_number()
-  print("Main threads says: hello!")
-  print("# before await")
-  let y = future.await() // switching threads
-  print("# after await")
-  return x + y
+fun quicksort<T is Comparable>(xs: inout T[], start: Int, length: Int) {
+  if length < 2 { return }
+  let pivot = start + length - 1
+  let f = fun[let y = xs[pivot].copy()](x: T) { x < y }
+  let midpoint = &xs[start ..< pivot].partition(in_first_half: f)
+  &xs.swap_at(midpoint, pivot)
+  quicksort(&xs, start, mipoint - start)
+  quicksort(&xs, midpoint + 1, length - (midpoint - start) - 1)
 }
 ```
-
