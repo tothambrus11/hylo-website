@@ -52,24 +52,35 @@ import Factorial from '../../components/Factorial.astro';
 
 ## Achievements
 
-
-
 <CardGrid>
-    <Card title="Update content" icon="pencil">
-        Edit `src/content/docs/index.mdx` to see this page change.
+    <Card title="MVS & Theory" icon="pencil">
+        - Extending Swift's subscripts with inout projections
+        - [Method bundles](https://dl.acm.org/doi/abs/10.1145/3687997.3695633)
+        - [Structured concurrency made easy](https://youtu.be/k6fI4asLJxo): thread hopping, no function coloring
+        - Expressing [double linked lists with value semantics](https://drops.dagstuhl.de/entities/document/10.4230/OASIcs.Programming.2025.25) is safe and faster than doing it with reference semantics.
     </Card>
-    <Card title="Change page layout" icon="document">
-        Delete `template: splash` in `src/content/docs/index.mdx` to display a
-        sidebar on this page.
+    <Card title="Compiler" icon="document">
+        - Compilation [using LLVM](https://github.com/hylo-lang/Swifty-LLVM)
+        - Novel techniques for compiling generics with coherence
+        - Caching and serialization of the compiler's program state
+        - [C interop](https://ambrus.dev/_astro/High-Fidelity%20C%20Interoperability%20in%20Hylo.7fUYiq3A.pdf) research
     </Card>
-    <Card title="Add new content" icon="add-document">
-        Add Markdown or MDX files to `src/content/docs` to create new pages.
+    <Card title="Standard Library" icon="add-document">
+        - [See the documentation](https://hylodoc.web.app) of the current implementation with some fundamental traits and data structures.
+        - [Positionless Collection Algorithms](https://github.com/hylo-lang/positionless-swift/)
+        - [rs-stl](https://github.com/RishabhRD/rs-stl): A Rust port of the C++ STL algorithms for improved generic programming
     </Card>
-    <Card title="Configure your site" icon="setting">
-        Edit your `sidebar` and other config in `astro.config.ts`.
+    <Card title="Developer Experience" icon="setting">
+        - [VSCode extension](https://github.com/hylo-lang/vscode-hylo) with syntax highlighting and code execution
+        - [Documentation compiler](https://github.com/hylo-lang/hylodoc)
+        - [Language Server](https://github.com/hylo-lang/hylo-language-server) prototype
     </Card>
-    <Card title="Read the docs" icon="open-book">
-        Learn more in [the Starlight Docs](https://starlight.astro.build/).
+    <Card title="Compiler DevOps" icon="open-book">
+        - [Development Containers](https://containers.dev/) support - easy to get started
+        - Support SPM/CMake, Ninja/Xcode, Windows/Linux/macOS
+        - Test generation compiler plugin
+        - Pre-built [Hylo development toolchain](https://github.com/hylo-lang/hylo-dev-toolchain/) Docker images
+        - Compiler written in Swift 6.2
     </Card>
 </CardGrid>
 
@@ -81,7 +92,7 @@ import Factorial from '../../components/Factorial.astro';
         <div className="text-white/80 text-lg">
             <p className="">
                 Are you interested in research collaboration — as a student, professor, or independent contributor?
-                Learn about our ongoing and open research topics on our <a className="text-inherit" href="/docs/contributing/university-collab/">University Collaboration</a> page!
+                Learn about our ongoing and open research topics on our <a className="text-inherit" href="/docs/contributing/university-collab/">University Collaboration</a> page, or suggest new topics!
             </p>
         </div>
 
