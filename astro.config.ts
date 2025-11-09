@@ -35,6 +35,9 @@ export default defineConfig({
             },
 
             sidebar: sidebar,
+            editLink: {
+                baseUrl: 'https://github.com/hylo-lang/hylo-website/tree/main/'
+            },
             customCss: ['./src/styles/global.css'],
             plugins: [starlightThemeRapide()],
             expressiveCode: {

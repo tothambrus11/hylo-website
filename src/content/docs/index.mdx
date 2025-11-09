@@ -8,16 +8,16 @@ hero:
     html: |
         <div class="rotate-3 relative ">
             <img src="/splash.png" class="w-[500px]"/>
-            <a title="Try Hylo on Compiler Explorer!" href="https://godbolt.org/z/Mv9a77a4c" class="absolute bottom-16 right-16 transition-[0.3s] hover:scale-100 hover:translate-y-[-2px]">
-                <img src="ce.png" class="h-10">
+            <a title="Try Hylo on Compiler Explorer!" href="https://godbolt.org/z/Mv9a77a4c" class="absolute bottom-12 right-12 transition-[0.3s] hover:scale-100 hover:translate-y-[-2px]">
+                <img src="ce.png" class="h-16">
             </a>
         </div>
   actions:
     - text: Read Our Introduction
       link: /introduction/
       icon: right-arrow
-    - text: Take the Language Tour
-      link: /docs/user/language-tour/
+    - text: Watch Dave's Talk at C++ On Sea
+      link: https://www.youtube.com/watch?v=5lecIqUhEl4
       icon: external
       variant: minimal
 ---
@@ -25,6 +25,8 @@ hero:
 import {Card, CardGrid} from '@astrojs/starlight/components';
 import {Icon} from '@astrojs/starlight/components';
 import {discussionsLink, slackLink} from "../../links.ts";
+//     - text: Take the Language Tour
+//       link: /docs/user/language-tour/
 
 import Banner2 from '../../components/Banner2.astro';
 import Button from '../../components/CalloutButton.astro';
@@ -32,6 +34,7 @@ import Papers from './Papers.astro';
 import Talks from './Talks.astro';
 import Podcasts from './Podcasts.astro';
 import Factorial from '../../components/Factorial.astro';
+
 
 <Banner2
     title="Join the Hylo Community"
@@ -108,17 +111,105 @@ import Factorial from '../../components/Factorial.astro';
 ## Podcasts
 <Podcasts/>
 
-# Examples
+# Working Examples
+Even though the compiler and standard library are still in their early stages, we can already show some advanced examples
+of Hylo code that you can try out on [Compiler Explorer](https://godbolt.org/z/Mv9a77a4c).
 
-## Concurrent Greeting
-```hylo
-fun quicksort<T is Comparable>(xs: inout T[], start: Int, length: Int) {
-  if length < 2 { return }
-  let pivot = start + length - 1
-  let f = fun[let y = xs[pivot].copy()](x: T) { x < y }
-  let midpoint = &xs[start ..< pivot].partition(in_first_half: f)
-  &xs.swap_at(midpoint, pivot)
-  quicksort(&xs, start, mipoint - start)
-  quicksort(&xs, midpoint + 1, length - (midpoint - start) - 1)
+```hylo title=GlobalBinding.hylo
+public fun main() {
+  precondition((x + y) == 42)
+}
+
+public let (x, y) = (40, 2)
+```
+
+```hylo title=Geometry.hylo
+
+/// The space between two intersecting lines.
+public type Angle: Deinitializable {
+
+  /// The value of `self` in radians.
+  public var radians: Float64
+
+  /// Creates an instance with its value in radians.
+  public memberwise init
+
+  /// Creates an instance with its value in degrees.
+  public init(degrees: Float64) {
+    &self.radians = degrees * Float64.pi() / 180.0
+  }
+
+  /// The value of `self` in degrees.
+  public property degrees: Float64 {
+    let { radians * 180.0 / Float64.pi() }
+    inout {
+      var d = radians * 180.0 / Float64.pi()
+      yield &d
+      &self.radians = d * Float64.pi() / 180.0
+    }
+  }
+
+  /// A copy of `self` wrapped within the interval `[0, 2 * pi[`.
+  public fun wrapped() -> Self {
+    var r = radians.copy()
+    if r < 0.0 {
+      while r < 0.0 {
+        &r = r + 2.0 * Float64.pi()
+      }
+    } else {
+      while r >= 2.0 * Float64.pi() {
+        &r = r - 2.0 * Float64.pi()
+      }
+    }
+    return Angle(radians: r)
+  }
+
+}
+
+public fun main() {
+  var a = Angle(radians: .pi())
+
+  inout d = &a.degrees
+  precondition(d == 180.0)
+  &d = 0.0
+  precondition(a.radians == 0.0)
+
+  &a.radians = 2.0 * Float64.pi()
+  precondition(a.wrapped().radians == 0.0)
 }
 ```
+
+```hylo title=CustomMove.hylo
+
+type A: Deinitializable {
+  public var witness: Int
+  public var x: Int
+  public init(x: sink Int) {
+    &self.x = x
+    &self.witness = 0
+  }
+}
+
+conformance A: Movable {
+  public fun take_value(from source: sink Self) {
+    set {
+      &self.x = source.x
+      &self.witness = 0
+    }
+    inout {
+      &self.x = source.x
+      &self.witness += 1
+    }
+  }
+}
+
+public fun main() {
+  var s = A(x: 1)
+  &s = A(x: 2)
+  &s = A(x: 2)
+
+  precondition(s.x == 2)
+  precondition(s.witness == 2)
+}
+```
+See more examples in the [compiler test suite](https://github.com/hylo-lang/hylo/tree/main/Tests/EndToEndTests/TestCases).
