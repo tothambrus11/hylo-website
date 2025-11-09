@@ -11,7 +11,8 @@ export const userGuideSidebar = [
             {label: 'Basic types', slug: 'docs/user/language-tour/basic-types'},
             {label: 'Functions and methods', slug: 'docs/user/language-tour/functions-and-methods'},
             {label: 'Subscripts', slug: 'docs/user/language-tour/subscripts'},
-            {label: 'Concurrency', slug: 'docs/user/language-tour/concurrency'}
+            {label: 'Concurrency', slug: 'docs/user/language-tour/concurrency'},
+            {label: 'Standard Library Docs', link: 'https://hylodoc.web.app/Sources/index.html'},
         ]
     },
     {
