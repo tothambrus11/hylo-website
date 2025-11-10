@@ -125,7 +125,7 @@ public let (x, y) = (40, 2)
 
 ```hylo title=Geometry.hylo
 
-/// The space between two intersecting lines.
+/// The orientation of a 2D vector.
 public type Angle: Deinitializable {
 
   /// The value of `self` in radians.
@@ -151,6 +151,8 @@ public type Angle: Deinitializable {
 
   /// A copy of `self` wrapped within the interval `[0, 2 * pi[`.
   public fun wrapped() -> Self {
+    // inefficient implementation until 
+    // `Float64.remainder(dividingBy:)` is available 
     var r = radians.copy()
     if r < 0.0 {
       while r < 0.0 {
