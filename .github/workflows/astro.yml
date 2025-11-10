@@ -30,7 +30,6 @@ env:
 
 jobs:
   build:
-    if: github.repository == 'hylo-lang/hylo-website'
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -46,9 +45,6 @@ jobs:
           node-version: "20"
           cache: pnpm
           cache-dependency-path: ${{ env.BUILD_PATH }}/pnpm-lock.yaml
-      - name: Prepare shell environment
-        run: |
-          echo "REPO_SANS_OWNER=${GITHUB_REPOSITORY##*/}" >> "${GITHUB_ENV}"
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
@@ -59,7 +55,7 @@ jobs:
         run: |
           pnpm astro build \
             --site "https://hylo-lang.org" \
-            --base "/${REPO_SANS_OWNER}"
+            --base "/hylo-website"
         working-directory: ${{ env.BUILD_PATH }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -67,7 +63,6 @@ jobs:
           path: ${{ env.BUILD_PATH }}/dist
 
   deploy:
-    if: github.repository == 'hylo-lang/hylo-website'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
